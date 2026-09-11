@@ -43,13 +43,27 @@ npm run dev
 
 เปิด http://localhost:5173
 
-### 5. ขึ้นออนไลน์ (ไม่ต้องมี hosting แยก)
+## ขึ้นออนไลน์ (2 ทาง — เลือกอย่างใดอย่างหนึ่ง)
+
+### ทางที่ 1: GitHub Pages (แนะนำ — เปิดได้ทุกเบราว์เซอร์ ไม่เกี่ยวกับ Google account)
+
+ตัว UI อยู่บน GitHub Pages, API/ข้อมูล/รูปยังอยู่ที่ Google Sheets + Drive ผ่าน Apps Script (ตั้งเป็น Anyone อยู่แล้ว)
+
+```bash
+npm run deploy:pages
+```
+
+ได้ URL: **https://omegu.github.io/trade-journal/** — deep link ใช้ได้ เช่น `https://omegu.github.io/trade-journal/#/backtests`
+(แก้ชื่อ repo ได้ที่ค่า `REPO` ใน `scripts/deploy-pages.mjs` + `build:pages` ใน `package.json`)
+
+### ทางที่ 2: เสิร์ฟจาก Apps Script เอง (URL เดียวทั้งแอปและ API)
 
 ```bash
 npm run build:gas
 ```
 
-ได้ไฟล์ใน `gas-app/` (Index.html ไฟล์เดียวรวมทั้งแอป + Code.gs + appsscript.json) — คัดลอกไปวางใน Apps Script editor แล้ว deploy ตามขั้นตอนใน [apps-script/README.md](./apps-script/README.md) หัวข้อ "ติดตั้งแบบออนไลน์" จากนั้นเปิด Web app URL ใช้ได้จากทุกอุปกรณ์เลย
+ได้ไฟล์ใน `gas-app/` (Index.html ไฟล์เดียวรวมทั้งแอป + Code.gs + appsscript.json) — คัดลอกไปวางใน Apps Script editor แล้ว deploy ตามขั้นตอนใน [apps-script/README.md](./apps-script/README.md) หัวข้อ "ติดตั้งแบบออนไลน์"
+> ข้อจำกัด: เบราว์เซอร์ที่มีหลายบัญชี Google อาจเปิด /exec ไม่ได้ (Google หยิบบัญชีผิด) — ถ้าเจอให้ใช้ GitHub Pages แทน
 
 ## โครงสร้างโปรเจกต์
 

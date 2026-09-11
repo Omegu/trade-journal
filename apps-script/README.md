@@ -77,6 +77,20 @@ npm run build:gas
 2. วาง `Index.html` (และ `Code.gs` ถ้าแก้) ทับของเดิมใน Apps Script editor
 3. **Deploy → Manage deployments → deployment เดิม → Edit → Version: New version → Deploy** (URL เดิมไม่เปลี่ยน)
 
+## ป้องกัน API ด้วย token (ตัวเลือก — แนะนำถ้าเอา UI ไปวางที่สาธารณะ)
+
+ค่าเริ่มต้น API เปิดให้ใครก็เรียกได้ (URL ยาวแต่ไม่ลับ) ถ้าต้องการล็อก:
+
+1. ใน Apps Script editor → **Project Settings → Script properties → Add script property**
+   - Property: `API_TOKEN` — Value: รหัสลับที่คุณตั้งเอง (เช่นสุ่ม 32 ตัวอักษร)
+2. สร้างไฟล์ `.env.production` (หรือเพิ่มใน `.env`) แล้ว build/serve ใหม่:
+   ```
+   VITE_API_TOKEN=<รหัสเดียวกับที่ตั้งไว้>
+   ```
+   - `npm run deploy:pages` (GitHub Pages) หรือ `npm run build:gas` (เสิร์ฟจาก Apps Script)
+
+ถ้าไม่ได้ตั้ง `API_TOKEN` ระบบจะเปิดใช้งานแบบเดิม (ไม่ต้องส่ง token) — หน้าเว็บแอปไม่ถูกตรวจ token เพื่อให้เปิดหน้าได้เสมอ
+
 ## โครงสร้างข้อมูล
 
 แอปจะสร้างแท็บชื่อ **Trades** ในชีตให้อัตโนมัติเมื่อบันทึกเทรดแรก (หรือเปิด `?action=list` ครั้งแรก) พร้อมรูปและรูป chart จะเก็บในโฟลเดอร์ **Trade Journal Images** บน Google Drive ของคุณ
