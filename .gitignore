@@ -1,0 +1,7 @@
+node_modules
+dist
+gas-app
+.env
+.env.local
+*.local
+analysis
